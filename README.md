@@ -2,12 +2,16 @@
 An AHK script I wrote to make use of the Number Pad of the laptop and some other keys while keeping its default functionality intact.
 
 Info:
-	● This script is written to work on the exact device(Acer Nitro 5 2018). So key mapping and the behavior might be differ from device to device.
-	![image](https://user-images.githubusercontent.com/68902530/177111874-7d985a5f-0846-4300-b6f4-292439c7fd7a.png)
-	● Most of the application launches are mapped to the taskbar order so either your device will need to be prepared or the script will need adaptations.
-	![image](https://user-images.githubusercontent.com/68902530/177111740-10954bb0-b657-494c-9ca7-481ca5cdc006.png)
+ This script is written to work on the exact device(Acer Nitro 5 2018). So key mapping and the behavior might be differ from device to device.
+  
+![image](https://user-images.githubusercontent.com/68902530/177111874-7d985a5f-0846-4300-b6f4-292439c7fd7a.png)
+ Most of the application launches are mapped to the taskbar order so either your device will need to be prepared or the script will need adaptations.
+  
+![image](https://user-images.githubusercontent.com/68902530/177111740-10954bb0-b657-494c-9ca7-481ca5cdc006.png)
+	
 
 Features:
+ 
 	● Always on top  :  ctrl + space
 	● MS Edge  :  num 1
 	● File Explorer  :  num 2
@@ -31,4 +35,4 @@ Features:
 	● Fluent Search  :  power key (num lock off)
 	● Hide Taskbar (experimental)  :  r.alt + num del
 
-	*even active when num lock is on
+*even active when num lock is on
