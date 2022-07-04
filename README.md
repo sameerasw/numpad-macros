@@ -1,7 +1,10 @@
 # numpad-macros
 An AHK script I wrote to make use of the Number Pad of the laptop and some other keys while keeping its default functionality intact.
 
+![image](https://github.com/sameerasw/numpad-macros/blob/main/Banner.png)
+
 Info:
+
  This script is written to work on the exact device(Acer Nitro 5 2018). So key mapping and the behavior might be differ from device to device.
   
 ![image](https://user-images.githubusercontent.com/68902530/177111874-7d985a5f-0846-4300-b6f4-292439c7fd7a.png)
