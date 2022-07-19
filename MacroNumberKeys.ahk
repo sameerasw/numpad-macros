@@ -392,9 +392,9 @@ XButton2::
 SC176:: Run, SlideToShutDown.exe
 Return
 
-; ______________________search with fluent search -pwr key______________________
+; ______________________show desktop______________________
 #if !GetKeyState("NumLock", "T")
-SC176:: Send, #+a
+SC176:: Send, #d
 Return
 
 ; ______________________taskbar hide =experimental______________________
