@@ -35,7 +35,7 @@ Features:
 	● Back/Paste/Ctrl*  :  mouse x1
 	● 2 x Click/Shift*  :  mouse x2
 	● Shutdown*  :  power key (num lock on)
-	● Fluent Search  :  power key (num lock off)
+	● Show Desktop  :  power key (num lock off)
 	● Hide Taskbar (experimental)  :  r.alt + num del
 
 *even active when num lock is on
