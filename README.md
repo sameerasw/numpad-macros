@@ -15,27 +15,50 @@ Info:
 	
 
 Features:
-	● Always on top  :  AltGr + Num /
-	● Taskbar shortcut 1  :  num 1
-	● Taskbar shortcut 2 :  num 2
-	● Taskbar shortcut 3  :  num 3
-	● Taskbar shortcut 4  :  num 4
-	● Taskbar shortcut 5  :  num 5
-	● Taskbar shortcut 6  :  num 6
-	● Taskbar shortcut 7  :  num 7
-	● Taskbar shortcut 8  :  num 8
-	● Taskbar shortcut 9  :  num 9
-	● DScreen Record (ShareX Shift+PrtSc)  :  pause
-	● Minimize  :  num /
-	● Maximize/Restore  :  num *
-	● Close/Close Tab  :  num -
-	● Alt + Tab  :  num 0
-	● Switch Tab  :  num .
-	● New Tab/Window  :  num +
-	● Back/Ctrl  :  mouse x1
-	● 2 x Click/Paste  :  mouse x2
-	● Slide to Shutdown*  :  power key (num lock on)
-	● Show Desktop  :  power key (num lock off)
-	● PrtSc (short)  :  Screen Snip
-	● PrtSc (Long)  :  OCR (PowerToys)
-	● Long menu key  :  Show tray icons (Win+F2 for RoundedTB)
+● Always on top  :  AltGr + Num /
+
+● Taskbar shortcut 1  :  num 1
+
+● Taskbar shortcut 2 :  num 2
+
+● Taskbar shortcut 3  :  num 3
+
+● Taskbar shortcut 4  :  num 4
+
+● Taskbar shortcut 5  :  num 5
+
+● Taskbar shortcut 6  :  num 6
+
+● Taskbar shortcut 7  :  num 7
+
+● Taskbar shortcut 8  :  num 8
+
+● Taskbar shortcut 9  :  num 9
+
+● DScreen Record (ShareX Shift+PrtSc)  :  pause
+
+● Minimize  :  num /
+
+● Maximize/Restore  :  num *
+
+● Close/Close Tab  :  num -
+
+● Alt + Tab  :  num 0
+
+● Switch Tab  :  num .
+
+● New Tab/Window  :  num +
+
+● Back/Ctrl  :  mouse x1
+
+● 2 x Click/Paste  :  mouse x2
+
+● Slide to Shutdown*  :  power key (num lock on)
+
+● Show Desktop  :  power key (num lock off)
+
+● PrtSc (short)  :  Screen Snip
+
+● PrtSc (Long)  :  OCR (PowerToys)
+
+● Long menu key  :  Show tray icons (Win+F2 for RoundedTB)
