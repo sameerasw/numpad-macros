@@ -36,7 +36,7 @@ IfWinExist ahk_exe msedge.exe
 {
 IfWinActive ahk_exe msedge.exe
 {
-send, ^{Tab}
+send, #1
 }
 Else
 {
@@ -56,29 +56,10 @@ NumpadEnd::launchOrSwitchedge()
 }
 
 ; ______________________launch or switch to telegram -5______________________
-launchOrSwitchtg()
-{
-IfWinExist ahk_exe telegram.exe
-{
-IfWinActive ahk_exe telegram.exe
-{
-WinMinimize, A
-}
-Else
-{
- WinActivateBottom, ahk_exe telegram.exe
-}
-}
-Else
-{
- send, #5
-}
-Return
-}
 
 #if !GetKeyState("NumLock", "T")
 {
-NumpadClear::launchOrSwitchtg()
+NumpadClear::#5
 }
 
 ; ______________________launch or switch to whatsapp uwp beta -6______________________
@@ -131,30 +112,14 @@ launchOrSwitchGmail()
 NumpadUp::launchOrSwitchGmail()
 }
 
-; ______________________Switch to photoshop -4______________________
-launchOrSwitchps()
+; ______________________Switch to discord -4______________________
+launchOrSwitchDiscord()
 {
-IfWinExist ahk_exe Photoshop.exe
-{
-IfWinActive ahk_exe Photoshop.exe
-{
-WinMinimize, A
+ send, #4
 }
-Else
-{
- WinActivateBottom, ahk_exe Photoshop.exe
-}
-}
-Else
-{
-  send, #!4
-}
-Return
-}
-
 #if !GetKeyState("NumLock", "T")
 {
-NumpadLeft::launchOrSwitchps()
+NumpadLeft::launchOrSwitchDiscord()
 }
 
 ; ______________________launch or switch to spotify -7______________________
@@ -183,36 +148,13 @@ Return
 NumpadHome::launchOrSwitchspotify()
 }
 
-; ______________________launch or switch to dolby audio -pause______________________
-launchOrSwitchdolby()
-{
-IfWinExist ahk_exe DolbyDAX2DesktopUI.exe
-{
-IfWinActive ahk_exe DolbyDAX2DesktopUI.exe
-{
-WinMinimize, A
-}
-Else
-{
- WinActivateBottom, ahk_exe DolbyDAX2DesktopUI.exe
-}
-}
-Else
-{
-Run, C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Dolby\Dolby Audio.lnk
-}
-Return
-}
-
-#if !GetKeyState("NumLock", "T")
-{
-Pause::launchOrSwitchdolby()
-}
-
 ; ______________________minimize -/______________________
 #if !GetKeyState("NumLock", "T")
 {
-NumpadDiv::WinMinimize, A
+NumpadDiv::
+Keywait, NumpadDiv
+WinMinimize, A
+return
 }
 
 ; ______________________maximize -*______________________
@@ -225,17 +167,16 @@ WinGetPos, X, Y, Width, Height, A
 If (Virtualscreenwidth = 1920) {
 
    If (Width < 1920) {
-
+Keywait, NumpadMult
       WinMaximize, A
 
    } Else {
-
+Keywait, NumpadMult
       WinRestore, A
 
    }
 
 }
-
 Return
 }
 
@@ -249,16 +190,19 @@ close()
 {
 IfWinActive ahk_exe msedge.exe
 {
+Keywait, NumpadSub
 Send, <^w
 }
 Else
 {
 IfWinActive ahk_class CabinetWClass
 {
+Keywait, NumpadSub
 Send, <^w
 }
 Else
 {
+Keywait, NumpadSub
 WinClose, A
 }
 }
@@ -275,31 +219,62 @@ NumpadSub::close()
 ; ______________________switch windows -0______________________
 #if !GetKeyState("NumLock", "T")
 {
-NumpadIns::Send, !{TAB}
+NumpadIns::
+   Send {Alt Down}
+   Send {Tab}
+   Keywait, NumpadIns
+   Send {Alt Up}
+   return
 }
 
 ; ______________________taskview -.______________________
 #if !GetKeyState("NumLock", "T")
 {
-NumpadDel::send, #{Tab}
+NumpadDel::
+  keywait, NumpadDel, T0.4
+  err := Errorlevel
+  if (err)
+  {
+   Keywait, NumpadDel
+   Send ^+{Tab}
+  return
+  }
+  Else
+  {
+   Send ^{Tab}
+  }
+  return
 }
-return
+
 
 ; ______________________new tab/window -+______________________
 fullscrn()
 {
   IfWinActive ahk_exe msedge.exe
     {
+      Keywait, NumpadAdd
       Send, ^t
     }
   Else
     {
       IfWinActive ahk_class CabinetWClass
         {
+         keywait, NumpadAdd, T0.4
+          err := Errorlevel
+          if (err)
+          {
+          Keywait, NumpadAdd
           Send, #e
+          }
+          Else
+          {
+          Send ^t
+          }
+         return
         }
       Else
         {
+          Keywait, NumpadAdd
           Send, #2
         }
     }
@@ -311,7 +286,7 @@ Return
 NumpadAdd::fullscrn()
 }
 
-; ______________________ctrl/paste/esc -x1______________________
+; ______________________ctrl/esc -x1______________________
 XButton1::
   keywait, XButton1, T0.4
   err := Errorlevel
@@ -324,21 +299,6 @@ IfWinActive ahk_class CabinetWClass
    Send {Ctrl Up}
    Return 
   }
- else
-  {
-IfWinActive ahk_exe Photoshop.exe
-  {
-   Send {Ctrl Down}
-   Keywait, XButton1
-   Send {Ctrl Up}
-   Return 
-  }
- else
-  {
-   Send, #v
-   Return 
-  }
-}
 }
 else
 {
@@ -368,16 +328,14 @@ else
  }
 return
 
-; ______________________shift/2xclick -x2______________________
+; ______________________2xclick -x2 + Paste______________________
 #if !GetKeyState("MButton", "P")
 XButton2::
   keywait, XButton2, T0.2
   srr := Errorlevel
   if (srr)
   {
-   Send {Shift Down}
-   Keywait, XButton2
-   Send {Shift Up}
+   Send #v
    Return 
   }
   else
@@ -397,15 +355,56 @@ Return
 SC176:: Send, #d
 Return
 
-; ______________________taskbar hide =experimental______________________
+; ______________________new wallpaper______________________
 #if !GetKeyState("NumLock", "T")
->!NumpadDel::HideShowTaskbar(hide := !hide)
-   
-HideShowTaskbar(action)
+Traytip()
 {
-   if action
-      WinHide, ahk_class Shell_TrayWnd
-   else
-      WinShow, ahk_class Shell_TrayWnd
+Traytip, Wallpaper Updating, from Unsplash
+Run, E:\Setups\AHK\wallpaper.bat,,hide
 }
+!SC176::Traytip()
 Return
+
+; ______________________Quick Settings______________________
+#if !GetKeyState("NumLock", "T")
+{
+AppsKey::
+  keywait, AppsKey, T0.4
+  err := Errorlevel
+  if (err)
+  {
+   Keywait, AppsKey
+   Send #{F2}
+  return
+  }
+  Else
+  {
+   Send, {AppsKey}
+  }
+  return
+}
+
+; ______________________OCR______________________
+#if !GetKeyState("NumLock", "T")
+{
+PrintScreen::
+  keywait, PrintScreen, T0.4
+  err := Errorlevel
+  if (err)
+  {
+   Keywait, PrintScreen
+   Send ^{PrintScreen}
+  return
+  }
+  Else
+  {
+   Send, {PrintScreen}
+  }
+  return
+}
+
+; ________________Search + ScreenRecord_________________
+#if !GetKeyState("NumLock", "T")
+{
+Pause::Send, +{PrintScreen}
+}
