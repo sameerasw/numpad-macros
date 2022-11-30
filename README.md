@@ -11,10 +11,11 @@ Info:
 ![image](https://user-images.githubusercontent.com/68902530/177111874-7d985a5f-0846-4300-b6f4-292439c7fd7a.png)
  Most of the application launches are mapped to the taskbar order so either your device will need to be prepared or the script will need adaptations.
   
-![image](https://user-images.githubusercontent.com/68902530/177111740-10954bb0-b657-494c-9ca7-481ca5cdc006.png)
+![image](https://user-images.githubusercontent.com/68902530/204732928-ff214a05-9dfa-4a83-a8b4-d9591ce15005.png)
 	
 
 Features:
+
 ● Always on top  :  AltGr + Num /
 
 ● Taskbar shortcut 1  :  num 1
