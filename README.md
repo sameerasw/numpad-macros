@@ -1,5 +1,6 @@
 # numpad-macros
 An AHK script I wrote to make use of the Number Pad of the laptop and some other keys while keeping its default functionality intact.
+Discussion  :  [TIDWIB](https://t.me/tidwib)
 
 ![image](https://github.com/sameerasw/numpad-macros/blob/main/Banner.png)
 
@@ -14,28 +15,27 @@ Info:
 	
 
 Features:
- 
-	● Always on top  :  ctrl + space
-	● MS Edge  :  num 1
-	● File Explorer  :  num 2
-	● Nitro Sense  :  num 3
-	● Photoshop  :  num 4
-	● Telegram  :  num 5
-	● WhatsApp UWP  :  num 6
-	● Spotify  :  num 7
-	● GMail PWA  :  num 8
-	● Google Photos PWA  :  num 9
-	● Dolby Audio  :  pause
+	● Always on top  :  AltGr + Num /
+	● Taskbar shortcut 1  :  num 1
+	● Taskbar shortcut 2 :  num 2
+	● Taskbar shortcut 3  :  num 3
+	● Taskbar shortcut 4  :  num 4
+	● Taskbar shortcut 5  :  num 5
+	● Taskbar shortcut 6  :  num 6
+	● Taskbar shortcut 7  :  num 7
+	● Taskbar shortcut 8  :  num 8
+	● Taskbar shortcut 9  :  num 9
+	● DScreen Record (ShareX Shift+PrtSc)  :  pause
 	● Minimize  :  num /
 	● Maximize/Restore  :  num *
 	● Close/Close Tab  :  num -
 	● Alt + Tab  :  num 0
-	● Task VIew  :  num .
+	● Switch Tab  :  num .
 	● New Tab/Window  :  num +
-	● Back/Paste/Ctrl*  :  mouse x1
-	● 2 x Click/Shift*  :  mouse x2
-	● Shutdown*  :  power key (num lock on)
+	● Back/Ctrl  :  mouse x1
+	● 2 x Click/Paste  :  mouse x2
+	● Slide to Shutdown*  :  power key (num lock on)
 	● Show Desktop  :  power key (num lock off)
-	● Hide Taskbar (experimental)  :  r.alt + num del
-
-*even active when num lock is on
+	● PrtSc (short)  :  Screen Snip
+	● PrtSc (Long)  :  OCR (PowerToys)
+	● Long menu key  :  Show tray icons (Win+F2 for RoundedTB)
