@@ -1,8 +1,3 @@
-; ______________________always on Top______________________
-#if !GetKeyState("NumLock", "T")
->!NumpadDiv:: Winset, Alwaysontop, , A ; ctrl + space
-Return
-
 ; ______________________launch or switch to file explorer -2______________________
 launchOrSwitchfiles()
 {
@@ -30,97 +25,67 @@ NumpadDown::launchOrSwitchfiles()
 }
 
 ; ______________________launch or switch to ms edge -1______________________
-launchOrSwitchedge()
-{
-IfWinExist ahk_exe msedge.exe
-{
-IfWinActive ahk_exe msedge.exe
-{
-send, #1
-}
-Else
-{
- WinActivateBottom, ahk_exe msedge.exe
-}
-}
-Else
-{
- send, #1
-}
-Return
-}
-
 #if !GetKeyState("NumLock", "T")
-{
-NumpadEnd::launchOrSwitchedge()
-}
+NumpadEnd::#1
 
 ; ______________________launch or switch to telegram -5______________________
 
 #if !GetKeyState("NumLock", "T")
-{
 NumpadClear::#5
-}
 
 ; ______________________launch or switch to whatsapp uwp beta -6______________________
 #if !GetKeyState("NumLock", "T")
 NumpadRight::#6
 
-; ______________________launch or switch to nitro sense -3______________________
-launchOrSwitchns()
-{
-IfWinExist ahk_exe NitroSense.exe
-{
-IfWinActive ahk_exe NitroSense.exe
-{
-WinMinimize, A
-}
-Else
-{
- WinActivateBottom, ahk_exe NitroSense.exe
-}
-}
-Else
-{
- send, #3
-}
-Return
-}
-
+; ______________________launch or switch to nitro sense/ notifications -3______________________
 #if !GetKeyState("NumLock", "T")
 {
-NumpadPgDn::launchOrSwitchns()
+NumpadPgDn::
+  keywait, NumpadPgDn, T0.4
+  err := Errorlevel
+  if (err)
+  {
+   Keywait, NumpadPgDn
+   Send #b
+  return
+  }
+  Else
+  {
+   Send, #3
+  }
+  return
+}
+
+; ______________________Notifications______________________
+#if !GetKeyState("NumLock", "T")
+{
+NumpadEnter::
+  keywait, NumpadEnter, T0.8
+  err := Errorlevel
+  if (err)
+  {
+   Keywait, NumpadEnter
+   Send #n
+  return
+  }
+  Else
+  {
+   Send, {NumpadEnter}
+  }
+  return
 }
 
 ; ______________________launch or switch to google photos -9______________________
-launchOrSwitchPhotos()
-{
- send, #9
-}
 #if !GetKeyState("NumLock", "T")
-{
-NumpadPgUp::launchOrSwitchPhotos()
-}
+NumpadPgUp::#9
 
 ; ______________________launch or switch to gmail -8______________________
-launchOrSwitchGmail()
-{
- send, #8
-}
 #if !GetKeyState("NumLock", "T")
-{
-NumpadUp::launchOrSwitchGmail()
-}
+NumpadUp::#8
 
-; ______________________Switch to discord -4______________________
-launchOrSwitchDiscord()
-{
- send, #4
-}
+; ______________________Switch to vscode -4______________________
 #if !GetKeyState("NumLock", "T")
-{
-NumpadLeft::launchOrSwitchDiscord()
-}
+NumpadLeft::#4
 
 ; ______________________launch or switch to spotify -7______________________
 launchOrSwitchspotify()
@@ -148,13 +113,22 @@ Return
 NumpadHome::launchOrSwitchspotify()
 }
 
-; ______________________minimize -/______________________
+; ______________________Switch tab -.______________________
 #if !GetKeyState("NumLock", "T")
 {
 NumpadDiv::
-Keywait, NumpadDiv
-WinMinimize, A
-return
+  keywait, NumpadDiv, T0.6
+  err := Errorlevel
+  if (err)
+  {
+   Keywait, NumpadDiv
+   Winset, Alwaysontop, , A
+  }
+  Else
+  {
+   WinMinimize, A
+  }
+  return
 }
 
 ; ______________________maximize -*______________________
@@ -227,7 +201,7 @@ NumpadIns::
    return
 }
 
-; ______________________taskview -.______________________
+; ______________________Switch tab -.______________________
 #if !GetKeyState("NumLock", "T")
 {
 NumpadDel::
@@ -291,15 +265,14 @@ XButton1::
   keywait, XButton1, T0.4
   err := Errorlevel
   if (err)
-{
-IfWinActive ahk_class CabinetWClass  
+ 
   {
    Send {Ctrl Down}
    Keywait, XButton1
    Send {Ctrl Up}
    Return 
   }
-}
+
 else
 {
  IfWinActive WhatsApp Beta
@@ -308,7 +281,7 @@ else
     }
  Else
   {
-    IfWinActive ahk_exe telegram.exe
+    IfWinActive ahk_exe Telegram.exe
       {
         Send {Esc}
         return
@@ -347,25 +320,20 @@ XButton2::
 
 ; ______________________shutdown -pwr key______________________
 #if GetKeyState("NumLock", "T")
-SC176:: Run, SlideToShutDown.exe
+SC176::Run, SlideToShutDown.exe
 Return
 
-; ______________________show desktop______________________
+; ______________________Lock screen______________________
 #if !GetKeyState("NumLock", "T")
-SC176:: Send, #d
-Return
+#if !GetKeyState("ScrollLock", "T")
+SC176::Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "Screensaver" "Clock.ini"
 
-; ______________________new wallpaper______________________
+; ______________________Screen Off_________________________
 #if !GetKeyState("NumLock", "T")
-Traytip()
-{
-Traytip, Wallpaper Updating, from Unsplash
-Run, E:\Setups\AHK\wallpaper.bat,,hide
-}
-!SC176::Traytip()
-Return
+#if GetKeyState("ScrollLock", "T")
+SC176 up::SendMessage 0x112, 0xF170, 2, , Program Manager  ; Monitor off
 
-; ______________________Quick Settings______________________
+; ______________________System Tray______________________
 #if !GetKeyState("NumLock", "T")
 {
 AppsKey::
@@ -379,7 +347,15 @@ AppsKey::
   }
   Else
   {
-   Send, {AppsKey}
+     IfWinActive ahk_exe Notion.exe
+      {
+        Send ^{/}
+        return
+      }
+      Else
+      {
+        Send, {AppsKey}
+      }
   }
   return
 }
@@ -403,8 +379,11 @@ PrintScreen::
   return
 }
 
-; ________________Search + ScreenRecord_________________
+; ________________ScreenRecord_________________
 #if !GetKeyState("NumLock", "T")
 {
 Pause::Send, +{PrintScreen}
 }
+
+
+
