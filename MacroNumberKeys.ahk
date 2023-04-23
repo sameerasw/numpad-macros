@@ -1,3 +1,7 @@
+; ______________________launch or switch to ms edge -1______________________
+#if !GetKeyState("NumLock", "T")
+NumpadEnd::#1
+
 ; ______________________launch or switch to file explorer -2______________________
 launchOrSwitchfiles()
 {
@@ -24,20 +28,7 @@ Return
 NumpadDown::launchOrSwitchfiles()
 }
 
-; ______________________launch or switch to ms edge -1______________________
-#if !GetKeyState("NumLock", "T")
-NumpadEnd::#1
-
-; ______________________launch or switch to telegram -5______________________
-
-#if !GetKeyState("NumLock", "T")
-NumpadClear::#5
-
-; ______________________launch or switch to whatsapp uwp beta -6______________________
-#if !GetKeyState("NumLock", "T")
-NumpadRight::#6
-
-; ______________________launch or switch to nitro sense/ notifications -3______________________
+; ______________________launch or switch to nitro mail/ notifications -3______________________
 #if !GetKeyState("NumLock", "T")
 {
 NumpadPgDn::
@@ -55,6 +46,31 @@ NumpadPgDn::
   }
   return
 }
+
+; ______________________Switch to discord -4______________________
+#if !GetKeyState("NumLock", "T")
+NumpadLeft::#4
+
+; ______________________launch or switch to telegram -5______________________
+
+#if !GetKeyState("NumLock", "T")
+NumpadClear::#5
+
+; ______________________launch or switch to whatsapp uwp beta -6______________________
+#if !GetKeyState("NumLock", "T")
+NumpadRight::#6
+
+; ______________________launch or switch to notion -7______________________
+#if !GetKeyState("NumLock", "T")
+NumpadLeft::#7
+
+; ______________________launch or switch to vscode -8______________________
+#if !GetKeyState("NumLock", "T")
+NumpadUp::#8
+
+; ______________________launch or switch to intellij -9______________________
+#if !GetKeyState("NumLock", "T")
+NumpadPgUp::#9
 
 ; ______________________Notifications______________________
 #if !GetKeyState("NumLock", "T")
@@ -75,45 +91,7 @@ NumpadEnter::
   return
 }
 
-; ______________________launch or switch to google photos -9______________________
-#if !GetKeyState("NumLock", "T")
-NumpadPgUp::#9
-
-; ______________________launch or switch to gmail -8______________________
-#if !GetKeyState("NumLock", "T")
-NumpadUp::#8
-
-; ______________________Switch to vscode -4______________________
-#if !GetKeyState("NumLock", "T")
-NumpadLeft::#4
-
-; ______________________launch or switch to spotify -7______________________
-launchOrSwitchspotify()
-{
-IfWinExist ahk_exe Spotify.exe
-{
-IfWinActive ahk_exe Spotify.exe
-{
-WinMinimize, A
-}
-Else
-{
- WinActivateBottom, ahk_exe Spotify.exe
-}
-}
-Else
-{
-  send, #7
-}
-Return
-}
-
-#if !GetKeyState("NumLock", "T")
-{
-NumpadHome::launchOrSwitchspotify()
-}
-
-; ______________________Switch tab -.______________________
+; ______________________minimize -______________________
 #if !GetKeyState("NumLock", "T")
 {
 NumpadDiv::
@@ -190,17 +168,6 @@ Return
 NumpadSub::close()
 }
 
-; ______________________switch windows -0______________________
-#if !GetKeyState("NumLock", "T")
-{
-NumpadIns::
-   Send {Alt Down}
-   Send {Tab}
-   Keywait, NumpadIns
-   Send {Alt Up}
-   return
-}
-
 ; ______________________Switch tab -.______________________
 #if !GetKeyState("NumLock", "T")
 {
@@ -220,6 +187,16 @@ NumpadDel::
   return
 }
 
+; ______________________switch windows -0______________________
+#if !GetKeyState("NumLock", "T")
+{
+NumpadIns::
+   Send {Alt Down}
+   Send {Tab}
+   Keywait, NumpadIns
+   Send {Alt Up}
+   return
+}
 
 ; ______________________new tab/window -+______________________
 fullscrn()
@@ -328,11 +305,6 @@ Return
 #if !GetKeyState("ScrollLock", "T")
 SC176::Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "Screensaver" "Clock.ini"
 
-; ______________________Screen Off_________________________
-#if !GetKeyState("NumLock", "T")
-#if GetKeyState("ScrollLock", "T")
-SC176 up::SendMessage 0x112, 0xF170, 2, , Program Manager  ; Monitor off
-
 ; ______________________System Tray______________________
 #if !GetKeyState("NumLock", "T")
 {
@@ -384,6 +356,3 @@ PrintScreen::
 {
 Pause::Send, +{PrintScreen}
 }
-
-
-
