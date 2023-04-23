@@ -62,7 +62,7 @@ NumpadRight::#6
 
 ; ______________________launch or switch to notion -7______________________
 #if !GetKeyState("NumLock", "T")
-NumpadLeft::#7
+NumpadHome::#7
 
 ; ______________________launch or switch to vscode -8______________________
 #if !GetKeyState("NumLock", "T")
