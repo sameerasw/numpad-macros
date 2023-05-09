@@ -258,7 +258,7 @@ else
     }
  Else
   {
-    IfWinActive ahk_exe Telegram.exe or WinActive ahk_exe olk.exe
+    IfWinActive ahk_exe Telegram.exe
       {
         Send {Esc}
         return
