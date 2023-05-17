@@ -1,4 +1,5 @@
-;func
+;===================================func===================================
+;edge
 edge_func(key,shortcut1,shortcut2)
 {
   IfWinActive ahk_exe msedge.exe
@@ -23,6 +24,23 @@ Else
 Return
 }
 
+;keywait
+keywaiting(key,shortcut1,shortcut2)
+{
+  keywait, %key%, T0.4
+    err := Errorlevel
+    if (err)
+    {
+      KeyWait, %key%
+      Send, %shortcut1%
+    }
+    Else
+    {
+      Send, %shortcut2%
+    }
+}
+
+;===================================hotkeys===================================
 ; ______________________launch or switch to ms edge -1______________________
 #if !GetKeyState("NumLock", "T")
 NumpadEnd::#1
@@ -53,22 +71,11 @@ Return
 NumpadDown::launchOrSwitchfiles()
 }
 
-; ______________________launch or switch to nitro mail/ notifications -3______________________
+; ______________________launch or switch to gmail/ notifications -3______________________
 #if !GetKeyState("NumLock", "T")
 {
 NumpadPgDn::
-  keywait, NumpadPgDn, T0.4
-  err := Errorlevel
-  if (err)
-  {
-   Keywait, NumpadPgDn
-   Send #b
-  return
-  }
-  Else
-  {
-   Send, #3
-  }
+  keywaiting("NumpadPgDn","#b{Enter}","#3")
   return
 }
 
@@ -101,18 +108,7 @@ NumpadPgUp::#9
 #if !GetKeyState("NumLock", "T")
 {
 NumpadEnter::
-  keywait, NumpadEnter, T0.8
-  err := Errorlevel
-  if (err)
-  {
-   Keywait, NumpadEnter
-   Send #n
-  return
-  }
-  Else
-  {
-   Send, {NumpadEnter}
-  }
+  keywaiting("NumpadEnter","#n","{NumpadEnter}")
   return
 }
 
@@ -166,24 +162,23 @@ NumpadMult::Maxrestore()
 close()
 {
 IfWinActive ahk_exe msedge.exe
-{
-Keywait, NumpadSub
-Send, <^w
-}
+  {
+  Keywait, NumpadSub
+  Send, <^w
+  }
 Else
-{
-IfWinActive ahk_class CabinetWClass
-{
-Keywait, NumpadSub
-Send, <^w
-}
-Else
-{
-Keywait, NumpadSub
-WinClose, A
-}
-}
-
+  {
+  IfWinActive ahk_class CabinetWClass
+    {
+    Keywait, NumpadSub
+    Send, <^w
+    }
+  Else
+    {
+    Keywait, NumpadSub
+    WinClose, A
+    }
+  }
 Return
 }
 
@@ -197,18 +192,7 @@ NumpadSub::close()
 #if !GetKeyState("NumLock", "T")
 {
 NumpadDel::
-  keywait, NumpadDel, T0.4
-  err := Errorlevel
-  if (err)
-  {
-   Keywait, NumpadDel
-   Send ^+{Tab}
-  return
-  }
-  Else
-  {
-   Send ^{Tab}
-  }
+  keywaiting("NumpadDel","^+{Tab}","^{Tab}")
   return
 }
 
@@ -371,18 +355,7 @@ AppsKey::
 #if !GetKeyState("NumLock", "T")
 {
 PrintScreen::
-  keywait, PrintScreen, T0.4
-  err := Errorlevel
-  if (err)
-  {
-   Keywait, PrintScreen
-   Send ^{PrintScreen}
-  return
-  }
-  Else
-  {
-   Send, {PrintScreen}
-  }
+  keywaiting("PrintScreen","^{PrintScreen}","{PrintScreen}")
   return
 }
 
