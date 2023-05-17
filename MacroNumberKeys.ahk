@@ -203,8 +203,18 @@ fullscrn()
 {
   IfWinActive ahk_exe msedge.exe
     {
-      Keywait, NumpadAdd
-      Send, ^t
+      keywait, NumpadAdd, T0.4
+        err := Errorlevel
+        if (err)
+        {
+        Keywait, NumpadAdd
+        Send, {f6}{Shift down}{Tab}{Tab}{Shift up}{Enter}
+        }
+        Else
+        {
+        Send ^t
+        }
+      return
     }
   Else
     {
@@ -355,4 +365,84 @@ PrintScreen::
 #if !GetKeyState("NumLock", "T")
 {
 Pause::Send, +{PrintScreen}
+}
+
+; ______________________Edge Shortcuts______________________
+;dev ops
+#if !GetKeyState("NumLock", "T")
+{F12::
+IfWinActive ahk_exe msedge.exe
+  {
+    keywait, F12, T0.4
+      err := Errorlevel
+      if (err)
+      {
+        KeyWait, F12
+        Send, {Ctrl down}{Shift down}{c}{Shift up}{Ctrl up}
+      }
+      Else
+      {
+        KeyWait, F12
+        Send, {F12}
+      }
+  }
+Else
+  {
+    KeyWait, F12
+    Send, {F12}
+  }
+Return
+}
+
+;Tab search + command bar
+#if !GetKeyState("NumLock", "T")
+{F2::
+IfWinActive ahk_exe msedge.exe
+  {
+    keywait, F2, T0.4
+      err := Errorlevel
+      if (err)
+      {
+        KeyWait, F2
+        Send, {Ctrl down}{q}{Ctrl up}
+      }
+      Else
+      {
+        KeyWait, F2
+        Send, {Ctrl down}{Shift down}{a}{Shift up}{Ctrl up}
+      }
+  }
+Else
+  {
+    KeyWait, F2
+    Send, {F2}
+  }
+Return
+}
+
+
+;sidebar
+#if !GetKeyState("NumLock", "T")
+{F1::
+IfWinActive ahk_exe msedge.exe
+  {
+    keywait, F1, T0.4
+      err := Errorlevel
+      if (err)
+      {
+        KeyWait, F1
+        Send, {Ctrl down}{Shift down}{e}{Shift up}{Ctrl up}
+      }
+      Else
+      {
+        KeyWait, F1
+        Send, {Ctrl down}{Shift down}{.}{Shift up}{Ctrl up}
+      }
+  }
+Else
+  {
+    KeyWait, F1
+    Send, {F1}
+  }
+Return
 }
