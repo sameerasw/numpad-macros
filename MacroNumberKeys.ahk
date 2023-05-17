@@ -1,8 +1,8 @@
 ;===================================func===================================
 ;edge
-edge_func(key,shortcut1,shortcut2)
+edge_func(key,shortcut1,shortcut2,app="ahk_exe msedge.exe")
 {
-  IfWinActive ahk_exe msedge.exe
+  IfWinActive %app%
   {
     keywait, %key%, T0.4
       err := Errorlevel
