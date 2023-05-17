@@ -1,3 +1,28 @@
+;func
+edge_func(key,shortcut1,shortcut2)
+{
+  IfWinActive ahk_exe msedge.exe
+  {
+    keywait, %key%, T0.4
+      err := Errorlevel
+      if (err)
+      {
+        KeyWait, %key%
+        Send, %shortcut1%
+      }
+      Else
+      {
+        Send, %shortcut2%
+      }
+  }
+Else
+  {
+    KeyWait, %key%
+    Send, {%key%}
+  }
+Return
+}
+
 ; ______________________launch or switch to ms edge -1______________________
 #if !GetKeyState("NumLock", "T")
 NumpadEnd::#1
@@ -370,79 +395,20 @@ Pause::Send, +{PrintScreen}
 ; ______________________Edge Shortcuts______________________
 ;dev ops
 #if !GetKeyState("NumLock", "T")
-{F12::
-IfWinActive ahk_exe msedge.exe
-  {
-    keywait, F12, T0.4
-      err := Errorlevel
-      if (err)
-      {
-        KeyWait, F12
-        Send, {Ctrl down}{Shift down}{c}{Shift up}{Ctrl up}
-      }
-      Else
-      {
-        KeyWait, F12
-        Send, {F12}
-      }
-  }
-Else
-  {
-    KeyWait, F12
-    Send, {F12}
-  }
-Return
+{
+  F12::edge_func("F12","{Ctrl down}{Shift down}{c}{Shift up}{Ctrl up}","{F12}")
 }
 
-;Tab search + command bar
+; ;Tab search + command bar
 #if !GetKeyState("NumLock", "T")
-{F2::
-IfWinActive ahk_exe msedge.exe
-  {
-    keywait, F2, T0.4
-      err := Errorlevel
-      if (err)
-      {
-        KeyWait, F2
-        Send, {Ctrl down}{q}{Ctrl up}
-      }
-      Else
-      {
-        KeyWait, F2
-        Send, {Ctrl down}{Shift down}{a}{Shift up}{Ctrl up}
-      }
-  }
-Else
-  {
-    KeyWait, F2
-    Send, {F2}
-  }
-Return
+{
+  F2::edge_func("F2","{Ctrl down}{q}{Ctrl up}","{Ctrl down}{Shift down}{a}{Shift up}{Ctrl up}")
 }
-
 
 ;sidebar
 #if !GetKeyState("NumLock", "T")
-{F1::
-IfWinActive ahk_exe msedge.exe
-  {
-    keywait, F1, T0.4
-      err := Errorlevel
-      if (err)
-      {
-        KeyWait, F1
-        Send, {Ctrl down}{Shift down}{e}{Shift up}{Ctrl up}
-      }
-      Else
-      {
-        KeyWait, F1
-        Send, {Ctrl down}{Shift down}{.}{Shift up}{Ctrl up}
-      }
-  }
-Else
-  {
-    KeyWait, F1
-    Send, {F1}
-  }
-Return
+{
+  F1::edge_func("F1","{Ctrl down}{Shift down}{e}{Shift up}{Ctrl up}","{Ctrl down}{Shift down}{.}{Shift up}{Ctrl up}")
 }
+
+        
