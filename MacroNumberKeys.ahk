@@ -71,7 +71,7 @@ Return
 NumpadDown::launchOrSwitchfiles()
 }
 
-; ______________________launch or switch to gmail/ notifications -3______________________
+; ______________________launch or switch to 3rd/ notifications -3______________________
 #if !GetKeyState("NumLock", "T")
 {
 NumpadPgDn::
@@ -79,28 +79,28 @@ NumpadPgDn::
   return
 }
 
-; ______________________Switch to discord -4______________________
+; ______________________Switch to -4______________________
 #if !GetKeyState("NumLock", "T")
 NumpadLeft::#4
 
-; ______________________launch or switch to telegram -5______________________
+; ______________________launch or -5______________________
 
 #if !GetKeyState("NumLock", "T")
 NumpadClear::#5
 
-; ______________________launch or switch to whatsapp uwp beta -6______________________
+; ______________________launch or switch to -6______________________
 #if !GetKeyState("NumLock", "T")
 NumpadRight::#6
 
-; ______________________launch or switch to notion -7______________________
+; ______________________launch or switch to -7______________________
 #if !GetKeyState("NumLock", "T")
 NumpadHome::#7
 
-; ______________________launch or switch to vscode -8______________________
+; ______________________launch or switch to -8______________________
 #if !GetKeyState("NumLock", "T")
 NumpadUp::#8
 
-; ______________________launch or switch to intellij -9______________________
+; ______________________launch or switch to -9______________________
 #if !GetKeyState("NumLock", "T")
 NumpadPgUp::#9
 
