@@ -208,38 +208,19 @@ NumpadIns::
 }
 
 ; ______________________new tab/window -+______________________
-fullscrn()
+#if !GetKeyState("NumLock", "T")
+NumpadAdd::
 {
   IfWinActive ahk_exe msedge.exe
     {
-      keywait, NumpadAdd, T0.4
-        err := Errorlevel
-        if (err)
-        {
-        Keywait, NumpadAdd
-        Send, {f6}{Shift down}{Tab}{Tab}{Shift up}{Enter}
-        }
-        Else
-        {
-        Send ^t
-        }
+      keywaiting("NumpadAdd","{f6}{Shift down}{Tab}{Tab}{Shift up}{Enter}","^t")
       return
     }
   Else
     {
       IfWinActive ahk_class CabinetWClass
         {
-         keywait, NumpadAdd, T0.4
-          err := Errorlevel
-          if (err)
-          {
-          Keywait, NumpadAdd
-          Send, #e
-          }
-          Else
-          {
-          Send ^t
-          }
+          keywaiting("NumpadAdd","#e","^t")
          return
         }
       Else
@@ -251,51 +232,45 @@ fullscrn()
 Return
 }
 
-#if !GetKeyState("NumLock", "T")
-{
-NumpadAdd::fullscrn()
-}
 
 ; ______________________ctrl/esc -x1______________________
 XButton1::
   keywait, XButton1, T0.4
   err := Errorlevel
   if (err)
- 
-  {
-   Send {Ctrl Down}
-   Keywait, XButton1
-   Send {Ctrl Up}
-   Return 
-  }
-
-else
-{
- IfWinActive WhatsApp Beta
     {
-     Send, ^w
+    Send {Ctrl Down}
+    Keywait, XButton1
+    Send {Ctrl Up}
+    Return 
     }
- Else
-  {
-    IfWinActive ahk_exe Telegram.exe
+  else
+    {
+    IfWinActive WhatsApp Beta
       {
+      Send, ^w
+      }
+    Else
+      {
+      IfWinActive ahk_exe Telegram.exe
+        {
         Send {Esc}
         return
-      }
+        }
       Else
-      {
+        {
         if GetKeyState("MButton", "P")
           {
-            Send ^w
-            return
+          Send ^w
+          return
           }
+        }
       }
-  }
-{
-   Send, {XButton1}
-}
- }
-return
+      {
+      Send, {XButton1}
+      }
+    }
+    return
 
 ; ______________________2xclick -x2 + Paste______________________
 #if !GetKeyState("MButton", "P")
@@ -383,5 +358,3 @@ Pause::Send, +{PrintScreen}
 {
   F1::edge_func("F1","{Ctrl down}{Shift down}{e}{Shift up}{Ctrl up}","{Ctrl down}{Shift down}{.}{Shift up}{Ctrl up}")
 }
-
-        
