@@ -79,7 +79,7 @@ Return
             SendInput, #2
         }
     Return
-    ;=== ctrl/esc x1
+    ;=== ctrl/esc x1 and x2
     XButton1::
         keywait, XButton1, T0.4
         if Errorlevel
@@ -88,8 +88,10 @@ Return
             Keywait, XButton1
             Send {Ctrl Up}
         }
-        Else If WinActive("WhatsApp Beta") || GetKeyState("MButton", "P")
+        Else If WinActive("WhatsApp Beta")
             SendInput, ^w
+        Else If GetKeyState("MButton", "P")
+            Send, {XButton2}
         Else If WinActive("ahk_exe Telegram.exe")
             Send {Esc}
         Else Send, {XButton1}
@@ -99,6 +101,8 @@ Return
         keywait, XButton2, T0.2
         If Errorlevel
             Send #v
+        Else If GetKeyState("MButton", "P")
+            SendInput, ^w
         Else Click, 2
     Return
     ;=== System Tray
