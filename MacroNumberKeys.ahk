@@ -1,4 +1,4 @@
-#Requires AutoHotkey 1.1.1.1+
+#Requires AutoHotkey 1.1+
 #SingleInstance Force 
 #Warn 
 Return 
@@ -92,7 +92,7 @@ Return
             SendInput, ^w
         Else If WinActive("ahk_exe Telegram.exe")
             Send {Esc}
-        Else Click, XB1
+        Else Send, {XButton1}
     Return
     ;=== 2xclick x2 + Paste
     XButton2::
