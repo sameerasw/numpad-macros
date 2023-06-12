@@ -12,6 +12,7 @@ Return
 #If !GetKeyState("NumLock", "T")
     ;=== launch or switch to 1
     NumpadEnd::#1
+    ^NumpadEnd::cleanlaunch(1)
     ;=== launch or switch to 2
     NumpadDown::
         If cabinet_is_active()
@@ -20,6 +21,7 @@ Return
             WinActivateBottom, ahk_class CabinetWClass
         Else SendInput, #e
     Return
+    ^NumpadDown::cleanlaunch(2)
     ;=== launch or switch to 3
     NumpadPgDn::keywaiting("NumpadPgDn","#b{Enter}","#3")
     ;=== Switch to switch to 4
@@ -28,12 +30,16 @@ Return
     NumpadClear::#5
     ;=== launch or switch to 6
     NumpadRight::#6
-    ;=== launch or switch to 7
-    NumpadHome::#7
-    ;=== launch or switch to 8
-    NumpadUp::#8
-    ;=== launch or switch to 9
+    ;=== Workspace - dev
+    NumpadHome::cleanlaunch("3}{7")
+    ^NumpadHome::#7
+    ;=== Communication
+    NumpadUp::cleanlaunch("6}{5")
+    ^NumpadUp::WinActivateBottom, ahk_exe mailspring.exe
+    ;=== launch or switch to Spotify
     NumpadPgUp::#9
+    ;=== launch or switch to Terminal
+    #Space::#3
     ;=== Notifications
     NumpadEnter::keywaiting("NumpadEnter","#n","{NumpadEnter}")
     ;=== minimize /
@@ -110,11 +116,11 @@ Return
         keywait, AppsKey, T0.4
         If Errorlevel {
             Keywait, AppsKey
-            Send #{F2}
+            SendInput, {AppsKey}
         }
         Else If WinActive("ahk_exe Notion.exe")
             Send ^{/}
-        Else SendInput, {AppsKey}
+        Else cleanlaunch("Tab")
     Return
     ;=== OCR
     PrintScreen::keywaiting("PrintScreen","^{PrintScreen}","{PrintScreen}")
@@ -156,4 +162,10 @@ keywaiting(key,shortcut1,shortcut2) {
         SendInput, %shortcut1%
     }
     Else SendInput, %shortcut2%
+}
+
+cleanlaunch(key) {
+    SendInput, {LWinDown}{d}{LWinUp}
+    Sleep, 300
+    SendInput, {LWinDown}{%key%}{LWinUp}
 }
