@@ -40,6 +40,43 @@ Return
     NumpadPgUp::#9
     ;=== launch or switch to Terminal
     #Space::#3
+
+    ;=== GIT
+    F1::
+        If terminal_active()
+            SendInput, git status{Enter}
+        Else SendInput, F1
+    Return
+    F2::
+        If terminal_active()
+            SendInput, git add .{Enter}
+        Else SendInput, F2
+    Return
+
+    F3::
+        If terminal_active()
+            SendInput, git commit -m "
+        Else SendInput, F3
+    Return
+
+    F4::
+        If terminal_active()
+            SendInput, git push{Enter}
+        Else SendInput, F4
+    Return
+
+    F5::
+        If terminal_active()
+            SendInput, git pull{Enter}
+        Else SendInput, F5
+    Return
+
+    F6::
+        If terminal_active()
+            SendInput, git fetch {Enter}
+        Else SendInput, F6
+    Return
+
     ;=== Notifications
     NumpadEnter::keywaiting("NumpadEnter","#n","{NumpadEnter}")
     ;=== minimize /
@@ -168,4 +205,8 @@ cleanlaunch(key) {
     SendInput, {LWinDown}{d}{LWinUp}
     Sleep, 300
     SendInput, {LWinDown}{%key%}{LWinUp}
+}
+
+terminal_active() {
+    Return WinActive("ahk_exe WindowsTerminal.exe")
 }
