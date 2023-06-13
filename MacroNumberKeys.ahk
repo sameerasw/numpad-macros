@@ -42,66 +42,17 @@ Return
     #Space::#3
 
     ;=== GIT
-    F1::
-        If terminal_active()
-            SendInput, git status{Enter}
-        Else Send, {F1}
-    Return
-    F2::
-        If terminal_active()
-            SendInput, git add .{Enter}
-        Else Send, {F2}
-    Return
-
-    F3::
-        If terminal_active()
-            SendInput, git commit -m "
-        Else Send, {F3}
-    Return
-
-    F4::
-        If terminal_active()
-            SendInput, git push{Enter}
-        Else Send, {F4}
-    Return
-
-    F5::
-        If terminal_active()
-            SendInput, git pull{Enter}
-        Else Send, {F5}
-    Return
-
-    F6::
-        If terminal_active()
-            SendInput, git fetch {Enter}
-        Else Send, {F6}
-    Return
-
-    F7::
-        If terminal_active()
-            SendInput, code .{Enter}
-        Else Send, {F7}
-    Return
-
-    F9::
-        If terminal_active()
-            SendInput, explorer .{Enter}
-        Else Send, {F9}
-    Return
-
-
-    F10::
-        If terminal_active()
-            SendInput, git-open.sh{Enter}
-        Else Send, {F10}
-    Return
-
-    F12::
-        If terminal_active()
-            Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "MenuBar\Terminal" "Terminal.ini"
-        Else Send, {F12}
-    Return
-
+    F1::terminal_active("F1","git status{Enter}")
+    F2::terminal_active("F2","git add .{Enter}")
+    F3::terminal_active("F3","git commit -m ")
+    F4::terminal_active("F4","git push{Enter}")
+    F5::terminal_active("F5","git pull{Enter}")
+    F6::terminal_active("F6","git fetch {Enter}")
+    F7::terminal_active("F7","code .{Enter}")
+    F9::terminal_active("F9","explorer .{Enter}")
+    F10::terminal_active("F10","git-open.sh{Enter}")
+    F12::Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "MenuBar\Terminal" "Terminal.ini"
+    
     ;=== Notifications
     NumpadEnter::keywaiting("NumpadEnter","#n","{NumpadEnter}")
     ;=== minimize /
@@ -232,6 +183,17 @@ cleanlaunch(key) {
     SendInput, {LWinDown}{%key%}{LWinUp}
 }
 
-terminal_active() {
-    Return WinActive("ahk_exe WindowsTerminal.exe")
+terminal_active(key,action) {
+    If WinActive("ahk_exe WindowsTerminal.exe")
+        {
+            KeyWait, %key%, T0.4
+        If Errorlevel
+            {
+                SendInput, %action%
+                KeyWait, %key%
+            }
+        Else Send, {%key%}
+        }
+    Else
+        Send, {%key%}
 }
