@@ -44,14 +44,21 @@ Return
     ;=== GIT
     F1::terminal_active("F1","git status{Enter}")
     F2::terminal_active("F2","git add .{Enter}")
-    F3::terminal_active("F3","git commit -m ")
+    F3::terminal_active("F3","git commit -m '")
     F4::terminal_active("F4","git push{Enter}")
     F5::terminal_active("F5","git pull{Enter}")
     F6::terminal_active("F6","git fetch {Enter}")
     F7::terminal_active("F7","code .{Enter}")
     F9::terminal_active("F9","explorer .{Enter}")
     F10::terminal_active("F10","git-open.sh{Enter}")
-    F12::Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "MenuBar\Terminal" "Terminal.ini"
+    F12::
+    If WinActive("ahk_exe WindowsTerminal.exe")
+        {
+            Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "MenuBar\Terminal" "Terminal.ini"
+        }
+    Else Send, {F12}
+    Return
+            
     
     ;=== Notifications
     NumpadEnter::keywaiting("NumpadEnter","#n","{NumpadEnter}")
