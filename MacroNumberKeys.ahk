@@ -45,36 +45,61 @@ Return
     F1::
         If terminal_active()
             SendInput, git status{Enter}
-        Else SendInput, F1
+        Else Send, {F1}
     Return
     F2::
         If terminal_active()
             SendInput, git add .{Enter}
-        Else SendInput, F2
+        Else Send, {F2}
     Return
 
     F3::
         If terminal_active()
             SendInput, git commit -m "
-        Else SendInput, F3
+        Else Send, {F3}
     Return
 
     F4::
         If terminal_active()
             SendInput, git push{Enter}
-        Else SendInput, F4
+        Else Send, {F4}
     Return
 
     F5::
         If terminal_active()
             SendInput, git pull{Enter}
-        Else SendInput, F5
+        Else Send, {F5}
     Return
 
     F6::
         If terminal_active()
             SendInput, git fetch {Enter}
-        Else SendInput, F6
+        Else Send, {F6}
+    Return
+
+    F7::
+        If terminal_active()
+            SendInput, code .{Enter}
+        Else Send, {F7}
+    Return
+
+    F9::
+        If terminal_active()
+            SendInput, explorer .{Enter}
+        Else Send, {F9}
+    Return
+
+
+    F10::
+        If terminal_active()
+            SendInput, git-open.sh{Enter}
+        Else Send, {F10}
+    Return
+
+    F12::
+        If terminal_active()
+            Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "MenuBar\Terminal" "Terminal.ini"
+        Else Send, {F12}
     Return
 
     ;=== Notifications
