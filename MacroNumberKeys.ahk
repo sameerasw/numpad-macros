@@ -44,7 +44,7 @@ Return
     ;=== GIT
     F1::terminal_active("F1","git status{Enter}")
     F2::terminal_active("F2","git add .{Enter}")
-    F3::terminal_active("F3","git commit -m '")
+    F3::terminal_active("F3","git commit -m ''{Left}")
     F4::terminal_active("F4","git push{Enter}")
     F5::terminal_active("F5","git pull{Enter}")
     F6::terminal_active("F6","git fetch {Enter}")
@@ -58,7 +58,38 @@ Return
         }
     Else Send, {F12}
     Return
-            
+
+;Text replacements
+    ::|mon::Monday
+    ::|tue::Tuesday
+    ::|wed::Wednesday
+    ::|thu::Thursday
+    ::|fri::Friday
+    ::|sat::Saturday
+    ::|sun::Sunday
+    ::|jan::January
+    ::|feb::February
+    ::|mar::March
+    ::|apr::April
+    ::|may::May
+    ::|jun::June
+    ::|jul::July
+    ::|aug::August
+    ::|sep::September
+    ::|oct::October
+    ::|nov::November
+    ::|dec::December
+    ::|link::https://sameerasw.netlify.app/
+    ::lorem::Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.
+    ::|win::{LWin}
+
+    ::|web::
+    Run, msedge.exe "%Clipboard%"
+    Return
+
+    ::|google::
+    Run, msedge.exe "https://www.google.com/search?q=%Clipboard%"
+    Return        
     
     ;=== Notifications
     NumpadEnter::keywaiting("NumpadEnter","#n","{NumpadEnter}")
