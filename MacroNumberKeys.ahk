@@ -1,4 +1,4 @@
-#Requires AutoHotkey 1.1+
+﻿#Requires AutoHotkey 1.1+
 #SingleInstance Force 
 #Warn 
 Return 
@@ -79,7 +79,32 @@ Return
     ::|oct::October
     ::|nov::November
     ::|dec::December
-    ::|link::https://sameerasw.netlify.app/
+    ::|netlify::https://sameerasw.netlify.app/
+    ::|github::https://github.com/sameerasw/
+    ::|link::https://sameerasw.me/
+    ::|gmail::sameera.whoami@gmail.com
+    ::|linkedin::https://www.linkedin.com/in/sameerasw/
+    ::|twitter::https://twitter.com/sameera_s_w
+    ::|telegram::https://t.me/sameera_s_w
+    ::|instagram::https://www.instagram.com/sameera_s_w/
+    ::|iitmail::sameera.20223140@iit.ac.lk
+    ::|roundedtb::https://github.com/Erisa/RoundedTB
+    ::|@::sameera_s_w
+    ::|gm::Good Morning!
+    ::|gn::Good Night!
+    ::|wa::WhatsApp
+    ::|tg::Telegram
+    ::|omw::On my way!
+    ::|brb::Be right back!
+    ::|ty::Thank you!
+    ::|yw::You're welcome!
+    ::|np::No problem!
+    ::spprt::support
+    ::wlcm::welcome
+    ::|wfh::work from home
+    ::|sri::Sri Lanka
+    ::|hbd::Happy Cake Day 
+    ::|setup::https://gist.github.com/sameerasw/12274932161b8b380fe0433e71fb9a9f
     ::lorem::Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.
     ::|win::{LWin}
 
