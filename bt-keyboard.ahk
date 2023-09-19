@@ -35,6 +35,16 @@ Return
         Else SendInput, {Media_Play_Pause}
     Return
 
+    F9::
+        keywait, F9, T0.6
+        if Errorlevel {
+            keywait, F9
+            SendInput, {NumLock}
+        }
+        Else 
+            SendInput, ^{Tab}
+    Return
+
     F10::
         If edge_is_active()
             keywaiting("NumpadAdd","{f6}+{Tab}+{Tab}{Enter}","^t")
@@ -66,32 +76,42 @@ Return
     #F6::SendInput, {F6}
     #F7::SendInput, {F7}
     #F8::SendInput, {F8}
-
+    #F9::SendInput, {F9}
     #F10::SendInput, {F10}
     #F11::SendInput, {F11}
     #F12::SendInput, {F12}
 
     Browser_Home::SendInput, {PrintScreen}
     ^Browser_Home::SendInput !#9
+    !Browser_Home::SendInput, !{PrintScreen}
 
     Browser_Back::SendInput, +{PrintScreen}
 
     RAlt::
-        keywait, RAlt, T0.2
-        if Errorlevel
-        {
-            SendInput, {RCtrl Down}
-            KeyWait, RAlt
-            SendInput, {RCtrl Up}
-        }
-        Else SendInput, ^{Tab}
-    Return
-
-    RWin::
        SendInput, {Alt Down}{Tab}
-       Keywait, RWin
+       Keywait, RAlt
        Send {Alt Up}
     Return
+
+
+
+
+
+    ;     keywait, RAlt, T0.2
+    ;     if Errorlevel
+    ;     {
+    ;         SendInput, {RCtrl Down}
+    ;         KeyWait, RAlt
+    ;         SendInput, {RCtrl Up}
+    ;     }
+    ;     Else SendInput, ^{Tab}
+    ; Return
+
+    ; RWin::
+    ;    SendInput, {Alt Down}{Tab}
+    ;    Keywait, RWin
+    ;    Send {Alt Up}
+    ; Return
 
     Launch_Mail::SendInput, {F2}
 
@@ -276,6 +296,15 @@ Return
 ; NUMLOCK + SCROLL LOCK OFF HOTKEYS
 #If !GetKeyState("NumLock", "T") && !GetKeyState("ScrollLock", "T")
     SC176::Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "Screensaver" "Clock.ini"
+    RWin::
+        keywait, RWin, T0.2
+        if Errorlevel {
+            Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ActivateConfig "Screensaver" "Clock-overlay.ini"
+            Keywait, RWin
+            Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !DeactivateConfig "Screensaver" "Clock-overlay.ini"
+        }
+        Else SendInput, #{Tab}
+    Return
 ;Always reset #if to global when done using it
 #If
 
@@ -309,3 +338,12 @@ terminal_active(action) {
     If WinActive("ahk_exe WindowsTerminal.exe")
         SendInput, %action%
 }
+
+F9::
+        keywait, F9, T0.6
+        if Errorlevel {
+            keywait, F9
+            SendInput, {NumLock}
+        }
+        Else SendInput, {F9}
+    Return
