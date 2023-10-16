@@ -93,26 +93,6 @@ Return
        Send {Alt Up}
     Return
 
-
-
-
-
-    ;     keywait, RAlt, T0.2
-    ;     if Errorlevel
-    ;     {
-    ;         SendInput, {RCtrl Down}
-    ;         KeyWait, RAlt
-    ;         SendInput, {RCtrl Up}
-    ;     }
-    ;     Else SendInput, ^{Tab}
-    ; Return
-
-    ; RWin::
-    ;    SendInput, {Alt Down}{Tab}
-    ;    Keywait, RWin
-    ;    Send {Alt Up}
-    ; Return
-
     Launch_Mail::SendInput, {F2}
 
     ;=== launch or switch to 1
@@ -146,18 +126,6 @@ Return
     +F2::terminal_active("git add .{Enter}")
     +F3::terminal_active("git commit -m ''{Left}")
     +F4::terminal_active("git push{Enter}")
-    ; F5::terminal_active("F5","git pull{Enter}")
-    ; F6::terminal_active("F6","git fetch {Enter}")
-    ; F7::terminal_active("F7","code .{Enter}")
-    ; F9::terminal_active("F9","explorer .{Enter}")
-    ; F10::terminal_active("F10","git-open.sh{Enter}")
-    ; F12::
-    ; If WinActive("ahk_exe WindowsTerminal.exe")
-    ;     {
-    ;         Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "MenuBar\Terminal" "Terminal.ini"
-    ;     }
-    ; Else Send, {F12}
-    ; Return
 
 ;Text replacements
     ::|mon::Monday
@@ -204,7 +172,16 @@ Return
     ::|wfh::work from home
     ::|sri::Sri Lanka
     ::|hbd::Happy Cake Day 
-    ::|setup::https://gist.github.com/sameerasw/12274932161b8b380fe0433e71fb9a9f
+    ::|setup::https://sameerasw.notion.site/Sameera-s-PC-setup-156b74e4ab064defaa3d7af180d4f76f?pvs=4
+    ::|4a5g::https://sameerasw.notion.site/Pixel-4a-5G-6b82fefe13634aec8aa2cdebc9a394ad?pvs=4
+    ::|volte::https://github.com/stanislawrogasik/Pixel5-VoLTE-VoWiFi
+    ::|pixel::https://photos.app.goo.gl/zcm7eGhvEYvohZAk9
+    ::|+94::+94703061070
+    ::|whoami::sameera.whoami@gmail.com
+    ::|iit::sameera.20223140@iit.ac.lk
+    ::|west::w1986636@westminster.ac.uk
+    ::|zonemail::sameeraw@zone24x7.com
+    ::|zone::zone24x7
     ::lorem::Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.
     ::|win::{LWin}
 
@@ -299,9 +276,8 @@ Return
     RWin::
         keywait, RWin, T0.2
         if Errorlevel {
-            Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ActivateConfig "Screensaver" "Clock-overlay.ini"
             Keywait, RWin
-            Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !DeactivateConfig "Screensaver" "Clock-overlay.ini"
+            SendInput, #v
         }
         Else SendInput, #{Tab}
     Return
