@@ -87,11 +87,9 @@ Return
 
     Browser_Back::SendInput, +{PrintScreen}
 
-    RAlt::
-       SendInput, {Alt Down}{Tab}
-       Keywait, RAlt
-       Send {Alt Up}
-    Return
+    RAlt::,
+    AppsKey::.
+    RCtrl::/
 
     Launch_Mail::SendInput, {F2}
 
@@ -212,9 +210,9 @@ Return
         Else WinClose, A
     Return
     ;=== Switch tab .
-    NumpadDel::.
+    NumpadDel::;
     ;=== switch windows 0
-    NumpadIns::,
+    NumpadIns:::
     ;=== new tab/window +
     NumpadAdd::
         If edge_is_active()
@@ -252,18 +250,6 @@ Return
             SendInput, ^x
         Else SendInput, ^c
     Return
-    ;=== System Tray
-    AppsKey::
-        keywait, AppsKey, T0.4
-        If Errorlevel {
-            Keywait, AppsKey
-            SendInput, {AppsKey}
-        }
-        Else If WinActive("ahk_exe Notion.exe")
-            Send ^{/}
-        Else cleanlaunch("Tab")
-    Return
-    ;=== OCR
     PrintScreen::keywaiting("PrintScreen","!#9","{PrintScreen}")
     ;=== Snipping Tool 
     ^PrintScreen::SendInput !#9
