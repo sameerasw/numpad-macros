@@ -1,1 +1,0 @@
-MsgBox, % A_AhkVersion

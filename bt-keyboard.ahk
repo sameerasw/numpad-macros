@@ -3,6 +3,10 @@
 #Warn 
 Return 
 
+
+    ScrollLock::SendInput, {NumLock}
+    Pause::SendInput, {Delete}
+
 ; NUMLOCK ON HOTKEYS
 #If GetKeyState("NumLock", "T")
     ;=== shutdown -pwr key
@@ -10,63 +14,6 @@ Return
 
 ; NUMLOCK OFF HOTKEYS
 #If !GetKeyState("NumLock", "T")
-
-    F1::
-        If edge_is_active()
-            WinMinimize, A
-        Else SendInput, #1
-    Return
-    F2::
-        If cabinet_is_active()
-            WinMinimize, A
-        Else SendInput, #2
-    Return
-    F3::#3
-    F4::#4
-
-    F6::#6
-    F7::#7
-    F8::
-        keywait, F8, T0.6
-        if Errorlevel {
-            keywait, F8
-            SendInput, #8
-        }
-        Else SendInput, {Media_Play_Pause}
-    Return
-
-    F9::
-        keywait, F9, T0.6
-        if Errorlevel {
-            keywait, F9
-            SendInput, {NumLock}
-        }
-        Else 
-            SendInput, ^{Tab}
-    Return
-
-    F10::
-        If edge_is_active()
-            keywaiting("NumpadAdd","{f6}+{Tab}+{Tab}{Enter}","^t")
-        Else If cabinet_is_active()
-            keywaiting("NumpadAdd","#e","^t")
-        Else {
-            Keywait, NumpadAdd
-            SendInput, #2
-        }
-    Return
-    F11::
-        keywait, F11, T0.6
-        if Errorlevel
-            Winset, Alwaysontop, , A
-        Else WinMinimize, A
-    Return
-    F12::
-        Keywait, F12
-        If edge_is_active() || cabinet_is_active()
-            SendInput, <^w
-        Else WinClose, A
-    Return
 
     #F1::SendInput, {F1}
     #F2::SendInput, {F2}
@@ -242,19 +189,26 @@ Return
         Else Send, {XButton1}
     Return
     ;=== 2xclick x2 + Paste
-    XButton2::
-        keywait, XButton2, T0.3
-        If Errorlevel
-            SendInput, ^v
-        Else If GetKeyState("MButton", "P")
-            SendInput, ^x
-        Else SendInput, ^c
+    XButton2::LWin
+    
+    #WheelUp::SendInput, #{Up}
+    #WheelDown::SendInput, #{Down}
+
+    #MButton::
+        keywait, MButton, T0.4
+        if Errorlevel
+        {
+            SendInput, ^{v}
+        }
+        Else SendInput, ^{c}
     Return
+
+    #XButton1::SendInput, ^{w}
+
     PrintScreen::keywaiting("PrintScreen","!#9","{PrintScreen}")
     ;=== Snipping Tool 
     ^PrintScreen::SendInput !#9
-    ;=== ScreenRecord
-    Pause::SendInput, +{PrintScreen}
+
 
 ; NUMLOCK + SCROLL LOCK OFF HOTKEYS
 #If !GetKeyState("NumLock", "T") && !GetKeyState("ScrollLock", "T")
@@ -309,3 +263,22 @@ F9::
         }
         Else SendInput, {F9}
     Return
+
+;----------------------------------------------------------------------
+; Virtual Desktop Switcher
+
+
+#If MouseIsInvolumecontrolarea() and not WinActive("ahk_class TscShellContainerClass")
+   WheelUp::SendInput, ^#{Left}
+   WheelDown::SendInput,  ^#{Right}
+#If
+
+MouseIsInvolumecontrolarea()
+{  
+   CoordMode, Mouse, Screen
+   MouseGetPos, xpos, ypos
+   if (ypos > A_ScreenHeight-60 and xpos <= A_ScreenWidth-500)
+	   Return 1
+   else
+	   Return 0
+}
