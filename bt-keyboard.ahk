@@ -1,284 +1,174 @@
-﻿#Requires AutoHotkey 1.1+
+#Requires AutoHotkey 1.1+
 #SingleInstance Force 
 #Warn 
 Return 
 
-
-    ScrollLock::SendInput, {NumLock}
-    Pause::SendInput, {Delete}
-
-; NUMLOCK ON HOTKEYS
-#If GetKeyState("NumLock", "T")
-    ;=== shutdown -pwr key
-    SC176::Run, SlideToShutDown.exe
-
 ; NUMLOCK OFF HOTKEYS
 #If !GetKeyState("NumLock", "T")
 
-    #F1::SendInput, {F1}
-    #F2::SendInput, {F2}
-    #F3::SendInput, {F3}
-    #F4::SendInput, {F4}
+;CapsLk Arrow keys
+CapsLock::
+  KeyWait CapsLock
+  KeyWait CapsLock,D T0.2
+  If !ErrorLevel && (A_PriorKey="CapsLock")
+	SetCapsLockState % GetKeyState("CapsLock","T")?"Off":"On"
+Return
 
-    #F6::SendInput, {F6}
-    #F7::SendInput, {F7}
-    #F8::SendInput, {F8}
-    #F9::SendInput, {F9}
-    #F10::SendInput, {F10}
-    #F11::SendInput, {F11}
-    #F12::SendInput, {F12}
+#If GetKeyState("CapsLock","P")  ;Following hotkeys are enabled when this is True
+w::Up                            ;Remap w to Up
+s::Down                          ;etc.
+a::Left                          ;
+d::Right  
 
-    Browser_Home::SendInput, {PrintScreen}
-    ^Browser_Home::SendInput !#9
-    !Browser_Home::SendInput, !{PrintScreen}
++w::+Up
++s::+Down
++a::+Left
++d::+Right
 
-    Browser_Back::SendInput, +{PrintScreen}
+<^w::<^Up
+<^s::<^Down
+<^a::<^Left
+<^d::<^Right
 
-    RAlt::,
-    AppsKey::.
-    RCtrl::/
+<!w::<!Up
+<!s::<!Down
+<!a::<!Left
+<!d::<!Right
 
-    Launch_Mail::SendInput, {F2}
+q::PgUp
+e::PgDn
+z::Home
+x::End
 
-    ;=== launch or switch to 1
-    NumpadEnd::#1
-    ;=== launch or switch to 2
-    NumpadDown::
-        If cabinet_is_active()
-            WinMinimize, A
-        Else If WinExist("ahk_class CabinetWClass")
-            WinActivateBottom, ahk_class CabinetWClass
-        Else SendInput, #e
-    Return
-    ;=== launch or switch to 3
-    NumpadPgDn::#3
-    ;=== Switch to switch to 4
-    NumpadLeft::#4
-    ;=== launch or switch to 5
-    NumpadClear::#5
-    ;=== launch or switch to 6
-    NumpadRight::#6
-    ;=== ;
-    NumpadUp::;
-    ;=== :
-    NumpadHome:::
-    ^NumpadHome::SendInput {Home}
-    ;=== launch or switch to Terminal
-    !Space::SendInput #+{Right}
+1::F1
+2::F2
+3::F3
+4::F4
+5::F5
+6::F6
+7::F7
+8::F8
+9::F9
+0::F10
+-::F11
+=::F12
 
-    ;=== GIT
-    +F1::terminal_active("git status{Enter}")
-    +F2::terminal_active("git add .{Enter}")
-    +F3::terminal_active("git commit -m ''{Left}")
-    +F4::terminal_active("git push{Enter}")
+#If 
 
-;Text replacements
-    ::|mon::Monday
-    ::|tue::Tuesday
-    ::|wed::Wednesday
-    ::|thu::Thursday
-    ::|fri::Friday
-    ::|sat::Saturday
-    ::|sun::Sunday
-    ::|jan::January
-    ::|feb::February
-    ::|mar::March
-    ::|apr::April
-    ::|may::May
-    ::|jun::June
-    ::|jul::July
-    ::|aug::August
-    ::|sep::September
-    ::|oct::October
-    ::|nov::November
-    ::|dec::December
-    ::|netlify::https://sameerasw.netlify.app/
-    ::|github::https://github.com/sameerasw/
-    ::|link::https://sameerasw.me/
-    ::|gmail::sameera.whoami@gmail.com
-    ::|linkedin::https://www.linkedin.com/in/sameerasw/
-    ::|twitter::https://twitter.com/sameera_s_w
-    ::|telegram::https://t.me/sameera_s_w
-    ::|instagram::https://www.instagram.com/sameera_s_w/
-    ::|iitmail::sameera.20223140@iit.ac.lk
-    ::|roundedtb::https://github.com/Erisa/RoundedTB
-    ::|@::sameera_s_w
-    ::|gm::Good Morning!
-    ::|gn::Good Night!
-    ::|wa::WhatsApp
-    ::|tg::Telegram
-    ::|omw::On my way!
-    ::|brb::Be right back!
-    ::|ty::Thank you!
-    ::|yw::You're welcome!
-    ::|np::No problem!
-    ::spprt::support
-    ::wlcm::welcome
-    ::|wfh::work from home
-    ::|sri::Sri Lanka
-    ::|hbd::Happy Cake Day 
-    ::|setup::https://sameerasw.notion.site/Sameera-s-PC-setup-156b74e4ab064defaa3d7af180d4f76f?pvs=4
-    ::|4a5g::https://sameerasw.notion.site/Pixel-4a-5G-6b82fefe13634aec8aa2cdebc9a394ad?pvs=4
-    ::|volte::https://github.com/stanislawrogasik/Pixel5-VoLTE-VoWiFi
-    ::|pixel::https://photos.app.goo.gl/zcm7eGhvEYvohZAk9
-    ::|+94::+94703061070
-    ::|whoami::sameera.whoami@gmail.com
-    ::|iit::sameera.20223140@iit.ac.lk
-    ::|west::w1986636@westminster.ac.uk
-    ::|zonemail::sameeraw@zone24x7.com
-    ::|zone::zone24x7
-    ::lorem::Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.
-    ::|win::{LWin}
+^CapsLock::CapsLock ; Ctrl+CapsLock toggles CapsLock
 
-    ::|web::
-    Run, msedge.exe "%Clipboard%"
-    Return
+; ignore alt + capslock
+!CapsLock::Return
 
-    ::|google::
-    Run, msedge.exe "https://www.google.com/search?q=%Clipboard%"
-    Return        
-    
-    ;=== Notifications
-    NumpadEnter::keywaiting("NumpadEnter","#n","{NumpadEnter}")
-    ;=== minimize /
-    NumpadDiv::/
-    ;=== maximize *
-    NumpadMult::
-        keywait, NumpadMult, T0.6
-        if Errorlevel
-            Winset, Alwaysontop, , A
-        Else WinMinimize, A
-    Return
-    ;=== close -
-    NumpadSub::
-        Keywait, NumpadSub
-        If edge_is_active() || cabinet_is_active()
-            SendInput, <^w
-        Else WinClose, A
-    Return
-    ;=== Switch tab .
-    NumpadDel::;
-    ;=== switch windows 0
-    NumpadIns:::
-    ;=== new tab/window +
-    NumpadAdd::
-        If edge_is_active()
-            keywaiting("NumpadAdd","{f6}+{Tab}+{Tab}{Enter}","^t")
-        Else If cabinet_is_active()
-            keywaiting("NumpadAdd","#e","^t")
-        Else {
-            Keywait, NumpadAdd
-            SendInput, #2
+; Arrow key alternatives
+AppsKey::SendInput, {Left}
+RCtrl::SendInput, {Right}
+>!AppsKey::SendInput, {Up}
+>!RCtrl::SendInput, {Down}
+
++AppsKey::SendInput, +{Left}
++RCtrl::SendInput, +{Right}
++>!AppsKey::SendInput, +{Up}
++>!RCtrl::SendInput, +{Down}
+
+; Screenshots
+>^BackSpace::SendInput, {PrintScreen}
+>^!BackSpace::SendInput, {Alt down}{PrintScreen}{Alt up}
+
+; Media keys
+>^=::SendInput, {Volume_Up}
+>^-::SendInput, {Volume_Down}
+>^\::SendInput, {Media_Play_Pause}
+>^]::SendInput, {Media_Next}
+>^[::SendInput, {Media_Prev}]
+
+; Desktop switching
+>^AppsKey::SendInput, {CtrlDown}{LWinDown}{Right}{LWinUp}{CtrlUp}
+>^RAlt::SendInput, {CtrlDown}{LWinDown}{Left}{LWinUp}{CtrlUp}
+
+
+; Mouse buttons
+XButton2::
+        keywait, XButton2, T0.2
+        if Errorlevel {
+            MouseGetPos, MouseX1, MouseY1
+			Sleep 50
+		MouseGetPos, MouseX2, MouseY2
+		If (abs(MouseX2-MouseX1) < 20) and (abs(MouseY2-MouseY1) < 20) 
+		{
+			Return
+		}
+		If ((MouseY2-MouseY1) < 5 and (MouseY1-MouseY2) < 5) 
+		{
+			If (MouseX2 < MouseX1)
+				SendInput {LWin down}{LCtrl down}{Right}{LWin up}{LCtrl up}
+			else
+			If (MouseX2 > MouseX1)
+				SendInput {LWin down}{LCtrl down}{Left}{LWin up}{LCtrl up}
+			KeyWait XButton2
+		}
+		else
+		If ((MouseX2-MouseX1) < 5 and (MouseX1-MouseX2) < 5) 
+		{
+			If (MouseY2 < MouseY1)
+				SendInput {LWin down}{Tab}{LWin up}
+			else
+			If (MouseY2 > MouseY1)
+				SendInput {LWin down}{Tab}{LWin up}
+			KeyWait XButton2
+		}
+
         }
+        Else SendInput, {XButton2}
     Return
-    ;=== ctrl/esc x1 and x2
-    XButton1::
+
+XButton1::
         keywait, XButton1, T0.4
-        if Errorlevel
-        {
-            Send {Ctrl Down}
-            Keywait, XButton1
-            Send {Ctrl Up}
-        }
-        Else If WinActive("WhatsApp Beta")
-            SendInput, ^w
-        Else If GetKeyState("MButton", "P")
-            Send, {XButton2}
-        Else If WinActive("ahk_exe Telegram.exe")
-            Send {Esc}
-        Else Send, {XButton1}
-    Return
-    ;=== 2xclick x2 + Paste
-    XButton2::LWin
-    
-    #WheelUp::SendInput, #{Up}
-    #WheelDown::SendInput, #{Down}
-
-    #MButton::
-        keywait, MButton, T0.4
-        if Errorlevel
-        {
-            SendInput, ^{v}
-        }
-        Else SendInput, ^{c}
-    Return
-
-    #XButton1::SendInput, ^{w}
-
-    PrintScreen::keywaiting("PrintScreen","!#9","{PrintScreen}")
-    ;=== Snipping Tool 
-    ^PrintScreen::SendInput !#9
-
-
-; NUMLOCK + SCROLL LOCK OFF HOTKEYS
-#If !GetKeyState("NumLock", "T") && !GetKeyState("ScrollLock", "T")
-    SC176::Run, "C:\Program Files\Rainmeter\Rainmeter.exe" !ToggleConfig "Screensaver" "Clock.ini"
-    RWin::
-        keywait, RWin, T0.2
         if Errorlevel {
-            Keywait, RWin
-            SendInput, #v
+        	SendInput, {LAlt down}{Tab}
+		KeyWait XButton1
+		SendInput, {LAlt up}
         }
-        Else SendInput, #{Tab}
+        Else SendInput, {XButton1}
     Return
-;Always reset #if to global when done using it
-#If
 
 
-; ===== Script Functions ===== 
-edge_is_active() {
-    Return WinActive("ahk_exe msedge.exe")
-}
 
-cabinet_is_active() {
-    Return WinActive("ahk_class CabinetWClass")
-}
 
-keywaiting(key,shortcut1,shortcut2) {
-    keywait, %key%, T0.4
-    if Errorlevel
-    {
-        KeyWait, %key%
-        SendInput, %shortcut1%
-    }
-    Else SendInput, %shortcut2%
-}
 
-cleanlaunch(key) {
-    SendInput, {LWinDown}{d}{LWinUp}
-    Sleep, 300
-    SendInput, {LWinDown}{%key%}{LWinUp}
-}
 
-terminal_active(action) {
-    If WinActive("ahk_exe WindowsTerminal.exe")
-        SendInput, %action%
-}
 
-F9::
-        keywait, F9, T0.6
+
+;---------------------------- Laptop Keys ----------------------------
+
+Launch_App2::
+        keywait, Launch_App2, T0.6
         if Errorlevel {
-            keywait, F9
-            SendInput, {NumLock}
+        	SendInput, {Media_Next}
+		KeyWait Launch_App2
         }
-        Else SendInput, {F9}
-    Return
+        Else
+	{
+		SendInput, {Media_Play_Pause}
+		Return
+	}
 
-;----------------------------------------------------------------------
-; Virtual Desktop Switcher
 
 
-#If MouseIsInvolumecontrolarea() and not WinActive("ahk_class TscShellContainerClass")
-   WheelUp::SendInput, ^#{Left}
-   WheelDown::SendInput,  ^#{Right}
-#If
+; NUMLOCK ON HOTKEYS
+#If !GetKeyState("NumLock", "T")
+    ;=== shutdown -pwr key
+    NumpadSub::SendInput, {Volume_Up}
+    NumpadMult::SendInput, {Volume_Down}
+	
 
-MouseIsInvolumecontrolarea()
-{  
-   CoordMode, Mouse, Screen
-   MouseGetPos, xpos, ypos
-   if (ypos > A_ScreenHeight-60 and xpos <= A_ScreenWidth-500)
-	   Return 1
-   else
-	   Return 0
-}
+	
+; Shortcut to toggle titlebar
+#!Delete::
+WinSet, Style, ^0xC00000, A
+Return
+
+; Shortcut to toggle titlebar and borders
+#^Delete::
+WinSet, Style, ^0xC40000, A
+Return
