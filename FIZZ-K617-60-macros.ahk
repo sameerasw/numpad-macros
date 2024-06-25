@@ -115,7 +115,7 @@ XButton2::
 	keywait, XButton2, T0.4
 	if Errorlevel {
 		SendInput, {LAlt down}{Tab}
-		KeyWait XButton1
+		KeyWait XButton2
 		SendInput, {LAlt up}
 	}
 	Else SendInput, {XButton2}
