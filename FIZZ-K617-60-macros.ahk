@@ -86,6 +86,9 @@ RCtrl::SendInput, {Right}
 >^AppsKey::SendInput, {CtrlDown}{LWinDown}{Right}{LWinUp}{CtrlUp}
 >^RAlt::SendInput, {CtrlDown}{LWinDown}{Left}{LWinUp}{CtrlUp}
 
+#BackSpace::SendInput, {Delete}
++#BackSpace::SendInput, {ShiftDown}{Delete}{ShiftUp}
+
 ; Mouse buttons
 XButton2::
 	keywait, XButton2, T0.4
@@ -130,3 +133,50 @@ Launch_App2::
 #If !GetKeyState("NumLock", "T")
 	NumpadSub::SendInput, {Volume_Up}
 	NumpadMult::SendInput, {Volume_Down}
+
+	;Text replacements
+	::|mon::Monday
+	::|tue::Tuesday
+	::|wed::Wednesday
+	::|thu::Thursday
+	::|fri::Friday
+	::|sat::Saturday
+	::|sun::Sunday
+	::|jan::January
+	::|feb::February
+	::|mar::March
+	::|apr::April
+	::|may::May
+	::|jun::June
+	::|jul::July
+	::|aug::August
+	::|sep::September
+	::|oct::October
+	::|nov::November
+	::|dec::December
+	::|netlify::https://sameerasw.netlify.app/
+	::|github::https://github.com/sameerasw/
+	::|link::https://sameerasw.com/
+	::|pixel::https://sameerasw.com/pixel
+	::|macos::https://sameerasw.com/macos
+	::|linkedin::https://www.linkedin.com/in/sameerasw/
+	::|twitter::https://twitter.com/sameera_s_w
+	::|telegram::https://t.me/sameera_s_w
+	::|instagram::https://www.instagram.com/sameera_s_w/
+	::|@::sameera_s_w
+	::|gm::Good Morning!
+	::|gn::Good Night!
+	::|wa::WhatsApp
+	::|tg::Telegram
+	::|omw::On my way!
+	::|brb::Be right back!
+	::|ty::Thank you!
+	::|yw::You're welcome!
+	::|np::No problem!
+	::spprt::support
+	::wlcm::welcome
+	::|wfh::work from home
+	::|sri::Sri Lanka
+	::|hbd::Happy Cake Day
+	::|hack::https://hackbook.simple.ink/
+	::lorem::Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam euismod, nisl eget ultricies aliquam, nunc nisl ultricies nunc, quis ultricies nisl nisl eget nisl.
