@@ -75,7 +75,7 @@ XButton2::
     }
     else
     {
-        Click "{XButton2}"
+        Send "{XButton2}"
     }
 }
 
@@ -97,7 +97,7 @@ XButton1::
     }
     else
     {
-        Click "{XButton1}"
+        Send "{XButton1}"
     }
 }
 
