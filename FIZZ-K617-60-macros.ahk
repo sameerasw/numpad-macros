@@ -89,6 +89,23 @@ RCtrl::SendInput, {Right}
 #BackSpace::SendInput, {Delete}
 +#BackSpace::SendInput, {ShiftDown}{Delete}{ShiftUp}
 
+>!BackSpace::SendInput, ^W
+>!=::
+	Keywait, NumpadMult
+	SysGet, VirtualScreenWidth, 78
+	WinGetPos, X, Y, Width, Height, A
+	If (Width < 1920)
+		WinMaximize, A
+	Else If (Virtualscreenwidth = 1920)
+		WinRestore, A
+	Return
+>!-::
+	keywait, NumpadDiv, T0.6
+	if Errorlevel
+		Winset, Alwaysontop, , A
+	Else WinMinimize, A
+	Return
+
 ; Mouse buttons
 XButton2::
 	keywait, XButton2, T0.4
