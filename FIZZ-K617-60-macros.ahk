@@ -35,6 +35,9 @@ Return
 	<!a::<!Left
 	<!d::<!Right
 
+	#+a::#+Left
+	#+d::#+Right
+
 	q::PgUp
 	e::PgDn
 	z::Home
@@ -57,8 +60,9 @@ Return
 
 ^CapsLock::CapsLock ; Ctrl+CapsLock toggles CapsLock
 
-; ignore alt + capslock
+; ignore  capslock
 !CapsLock::Return
+#+CapsLock::Return
 
 ; Arrow key alternatives
 AppsKey::SendInput, {Left}
@@ -70,6 +74,9 @@ RCtrl::SendInput, {Right}
 +RCtrl::SendInput, +{Right}
 +>!AppsKey::SendInput, +{Up}
 +>!RCtrl::SendInput, +{Down}
+
+#+AppsKey::SendInput, {Shift down}{LWinDown}{Left}{LWinUp}{Shift up}
+#+RCtrl::SendInput, {Shift down}{LWinDown}{Right}{LWinUp}{Shift up}
 
 ; Screenshots
 >^BackSpace::SendInput, {PrintScreen}
@@ -98,13 +105,13 @@ RCtrl::SendInput, {Right}
 		WinMaximize, A
 	Else If (Virtualscreenwidth = 1920)
 		WinRestore, A
-	Return
+Return
 >!-::
 	keywait, NumpadDiv, T0.6
 	if Errorlevel
 		Winset, Alwaysontop, , A
 	Else WinMinimize, A
-	Return
+		Return
 
 ; Mouse buttons
 XButton2::
