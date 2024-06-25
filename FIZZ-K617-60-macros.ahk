@@ -3,9 +3,6 @@
 #Warn
 Return
 
-; NUMLOCK OFF HOTKEYS
-#If !GetKeyState("NumLock", "T")
-
 	;CapsLk Arrow keys
 	CapsLock::
 		KeyWait CapsLock
