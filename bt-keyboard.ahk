@@ -153,22 +153,7 @@ Launch_App2::
 		Return
 	}
 
-
-
 ; NUMLOCK ON HOTKEYS
 #If !GetKeyState("NumLock", "T")
-    ;=== shutdown -pwr key
     NumpadSub::SendInput, {Volume_Up}
     NumpadMult::SendInput, {Volume_Down}
-	
-
-	
-; Shortcut to toggle titlebar
-#!Delete::
-WinSet, Style, ^0xC00000, A
-Return
-
-; Shortcut to toggle titlebar and borders
-#^Delete::
-WinSet, Style, ^0xC40000, A
-Return
