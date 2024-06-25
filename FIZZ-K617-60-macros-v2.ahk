@@ -1,5 +1,6 @@
 #Requires AutoHotkey v2.0
 
+
 ;CapsLk keys
 CapsLock & a::left
 CapsLock & d::right
